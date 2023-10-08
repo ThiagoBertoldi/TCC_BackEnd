@@ -6,11 +6,13 @@ interface CreateAula {
    conteudoAula: string,
    idMateria: string,
    dataAula: string,
-   idProfessor: string
+   idProfessor: string,
+   posicaoX: string,
+   posicaoY: string
 }
 
 class CreateAulaService {
-   async execute({ nomeAula, conteudoAula, idMateria, dataAula, idProfessor }: CreateAula) {
+   async execute({ nomeAula, conteudoAula, idMateria, dataAula, idProfessor, posicaoX, posicaoY }: CreateAula) {
       if (!nomeAula || !conteudoAula || !dataAula)
          throw new Error('Preencha todos os campos!')
 
@@ -24,7 +26,7 @@ class CreateAulaService {
       if (!board?.insertedId)
          throw new Error('Não foi possível criar o board de aula')
 
-      const aula = await client.db('TCC').collection('Aula').insertOne({ _id: idAula, idBoard, nomeAula, conteudoAula, idMateria, dataAula, created_at: new Date(), idProfessor })
+      const aula = await client.db('TCC').collection('Aula').insertOne({ _id: idAula, idBoard, nomeAula, conteudoAula, idMateria, dataAula, posicaoX, posicaoY, created_at: new Date(), idProfessor })
       if (!aula?.insertedId)
          throw new Error('Não foi possível criar a matéria')
 

@@ -13,7 +13,7 @@ class SaveBoardService {
 
       const board = await client.db('TCC').collection('BoardComponent')
 
-      await board.deleteMany({ idProfessor })
+      await board.deleteMany({ idProfessor, idBoard })
 
       components.forEach(async component => {
          let inserted = await board.insertOne({ component, idProfessor, idBoard })

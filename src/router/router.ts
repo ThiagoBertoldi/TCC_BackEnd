@@ -9,6 +9,8 @@ import { CreateAulaController } from "../controller/Aula/CreateAulaController"
 import { GetAulaController } from "../controller/Aula/GetAulaController"
 import { SaveBoardController } from "../controller/Board/SaveBoardController"
 import { GetComponentsController } from "../controller/Board/GetComponentsBoardController"
+import { AttAulasController } from "../controller/Aula/AttAulasController"
+import { GetBackgroundController } from "../controller/Materia/GetBackgroundController"
 
 dotenv.config()
 
@@ -21,10 +23,12 @@ routes.post('/register', new CreateUserController().handle)
 // Rotas Matéria
 routes.post('/create-materia', validToken, new CreateMateriaController().handle)
 routes.get('/get-materias', validToken, new GetMateriaController().handle)
+routes.post('/get-background', validToken, new GetBackgroundController().handle)
 
 // Rotas Aula
 routes.post('/create-aula', validToken, new CreateAulaController().handle)
 routes.get('/get-aulas', validToken, new GetAulaController().handle)
+routes.post('/salva-aulas', validToken, new AttAulasController().handle)
 
 // Rotas Board
 routes.post('/save-board', validToken, new SaveBoardController().handle) 
