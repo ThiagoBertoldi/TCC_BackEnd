@@ -7,7 +7,6 @@ interface GetQuestaoInterface {
 
 class GetQuestaoService {
    async execute({ idAula }: GetQuestaoInterface) {
-      console.log(idAula)
       if (!idAula)
          throw new Error('Erro ao buscar questão')
 
