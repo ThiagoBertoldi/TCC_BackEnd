@@ -30,7 +30,7 @@ class SaveAulasService {
       let existeImagem = await client.db('TCC').collection('BackgroundMateria').findOne({ idMateria })
       if(existeImagem?._id) {
          let filter = { _id: existeImagem._id }
-         let att = { $set: { image: backgroundBase64 } }
+         let att = { $set: { backgroundBase64 } }
          await client.db('TCC').collection('BackgroundMateria').updateOne(filter, att)
       } else {
          await client.db('TCC').collection('BackgroundMateria').insertOne({ backgroundBase64, idMateria  })
