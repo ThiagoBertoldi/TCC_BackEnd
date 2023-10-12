@@ -3,22 +3,22 @@ import { client } from "../../database/client";
 
 interface NovaQuestaoRequest {
    descricaoQuestao: string,
-   respostaCorreta: string,
-   resposta1: string,
-   resposta2: string,
-   resposta3: string,
-   resposta4: string,
-   resposta5: string,
+   listaRespostas: Array<Resposta>,
    idMateria: string,
    idProfessor: string
    moedas: string,
 }
 
+interface Resposta {
+   respostaCorreta: boolean,
+   descricao: string
+}
+
 class NovaQuestaoService {
    async execute(objectRequest: NovaQuestaoRequest) {
-      const { descricaoQuestao, respostaCorreta, resposta1, resposta2, resposta3, resposta4, resposta5, idMateria, moedas, idProfessor } = objectRequest
+      const { descricaoQuestao, listaRespostas, idMateria, moedas, idProfessor } = objectRequest
 
-      if(!descricaoQuestao || !respostaCorreta || !resposta1 || !resposta2 || !idMateria)
+      if(!descricaoQuestao || listaRespostas.length <= 1 || !idMateria)
          throw new Error('Questão inválida')
 
       let insertAula = {
@@ -39,12 +39,7 @@ class NovaQuestaoService {
 
       let insert = { 
          descricaoQuestao, 
-         respostaCorreta,
-         resposta1, 
-         resposta2, 
-         resposta3, 
-         resposta4, 
-         resposta5,
+         listaRespostas,
          moedas,
          idMateria: new ObjectId(idMateria),
          idAula: aula.insertedId,

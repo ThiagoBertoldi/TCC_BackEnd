@@ -5,12 +5,7 @@ class NovaQuestaoController {
    async handle(req: Request, res: Response) {
       const {
          descricaoQuestao, 
-         respostaCorreta, 
-         resposta1, 
-         resposta2, 
-         resposta3, 
-         resposta4, 
-         resposta5,
+         listaRespostas,
          idMateria,
          moedas
       
@@ -20,12 +15,7 @@ class NovaQuestaoController {
 
       let objectRequest = {
          descricaoQuestao,
-         respostaCorreta,
-         resposta1,
-         resposta2,
-         resposta3,
-         resposta4,
-         resposta5,
+         listaRespostas,
          idMateria,
          idProfessor: req.user_id as string,
          moedas
