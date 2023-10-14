@@ -17,14 +17,16 @@ import { GetQuestaoController } from "../controller/Questao/GetQuestaoController
 import { AttQuestaoController } from "../controller/Questao/AttQuestaoController"
 import { SaveMercadoController } from "../controller/Mercado/SaveMercadoController"
 import { GetItensMercadoController } from "../controller/Mercado/GetItensMercadoController"
+import { GetUserController } from "../controller/User/GetUserController"
 
 dotenv.config()
 
 const routes = Router()
 
-// Rotas Autenticação
+// Rotas Autenticação / Usuário
 routes.post('/login', new LoginController().handle)
 routes.post('/register', new CreateUserController().handle)
+routes.get('/get-user', validToken, new GetUserController().handle)
 
 // Rotas Matéria
 routes.post('/create-materia', validToken, new CreateMateriaController().handle)
@@ -49,10 +51,5 @@ routes.post('/update-questao', validToken, new AttQuestaoController().handle)
 // Rotas Mercado
 routes.post('/att-mercado', validToken, new SaveMercadoController().handle)
 routes.get('/get-itens-mercado', validToken, new GetItensMercadoController().handle)
-
-// Test Route
-routes.post('/teste', validToken, (req: Request, res: Response) => {
-   return res.json({ ok: req.user_id })
-})
 
 export { routes }
