@@ -18,6 +18,7 @@ import { AttQuestaoController } from "../controller/Questao/AttQuestaoController
 import { SaveMercadoController } from "../controller/Mercado/SaveMercadoController"
 import { GetItensMercadoController } from "../controller/Mercado/GetItensMercadoController"
 import { GetUserController } from "../controller/User/GetUserController"
+import { CreateAlunoController } from "../controller/User/CreateAlunoController"
 
 dotenv.config()
 
@@ -27,6 +28,7 @@ const routes = Router()
 routes.post('/login', new LoginController().handle)
 routes.post('/register', new CreateUserController().handle)
 routes.get('/get-user', validToken, new GetUserController().handle)
+routes.post('/create-aluno', validToken, new CreateAlunoController().handle)
 
 // Rotas Matéria
 routes.post('/create-materia', validToken, new CreateMateriaController().handle)

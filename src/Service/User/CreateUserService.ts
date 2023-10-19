@@ -33,7 +33,7 @@ class CreateUserService {
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(pass, salt); 
 
-      const user = await client.db('TCC').collection('User').insertOne({ email, pass: hash, username, type })
+      const user = await client.db('TCC').collection('User').insertOne({ email, pass: hash, username, type, created_at: new Date() })
       if(!user?.insertedId)
          throw new Error('Não foi possível cadastrar o usuário')
       
