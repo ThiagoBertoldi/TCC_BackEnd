@@ -1,14 +1,14 @@
 import { client } from "../../database/client"
 
 interface GetAula {
-   idProfessor: string
+   idMateria: string
 }
 
 class GetAulaService {
-   async execute({ idProfessor }: GetAula) {
+   async execute({ idMateria }: GetAula) {
       const projection = { idProfessor: 0, idMateria: 0 }
       
-      return await client.db('TCC').collection('Aula').find({ idProfessor }, { projection })
+      return await client.db('TCC').collection('Aula').find({ idMateria }, { projection })
    }
 }
 

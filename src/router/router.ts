@@ -20,6 +20,7 @@ import { GetUserController } from "../controller/User/GetUserController"
 import { CreateAlunoController } from "../controller/User/CreateAlunoController"
 import { GetAlunosController } from "../controller/User/GetAlunosController"
 import { AddAlunoMateriaController } from "../controller/Materia/AddAlunoMateriaController"
+import { GetMateriasAlunoController } from "../controller/Materia/GetMateriasAlunoController"
 
 const routes = Router()
 
@@ -35,6 +36,7 @@ routes.post('/create-materia', validToken, new CreateMateriaController().handle)
 routes.get('/get-materias', validToken, new GetMateriaController().handle)
 routes.post('/get-background', validToken, new GetBackgroundController().handle)
 routes.post('/adicionar-aluno-materia', validToken, new AddAlunoMateriaController().handle)
+routes.get('/get-materias-aluno', validToken, new GetMateriasAlunoController().handle)
 
 // Rotas Aula
 routes.post('/create-aula', validToken, new CreateAulaController().handle)
