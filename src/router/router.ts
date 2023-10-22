@@ -2,7 +2,6 @@ import { Router, Request, Response, json } from "express"
 import { validToken } from "../middleware/isAuthenticate"
 import { CreateUserController } from "../controller/User/CreateUserController"
 import { LoginController } from "../controller/User/LoginController"
-import dotenv from 'dotenv'
 import { CreateMateriaController } from "../controller/Materia/CreateMateriaController"
 import { GetMateriaController } from "../controller/Materia/GetMateriaController"
 import { CreateAulaController } from "../controller/Aula/CreateAulaController"
@@ -19,8 +18,8 @@ import { SaveMercadoController } from "../controller/Mercado/SaveMercadoControll
 import { GetItensMercadoController } from "../controller/Mercado/GetItensMercadoController"
 import { GetUserController } from "../controller/User/GetUserController"
 import { CreateAlunoController } from "../controller/User/CreateAlunoController"
-
-dotenv.config()
+import { GetAlunosController } from "../controller/User/GetAlunosController"
+import { AddAlunoMateriaController } from "../controller/Materia/AddAlunoMateriaController"
 
 const routes = Router()
 
@@ -29,11 +28,13 @@ routes.post('/login', new LoginController().handle)
 routes.post('/register', new CreateUserController().handle)
 routes.get('/get-user', validToken, new GetUserController().handle)
 routes.post('/create-aluno', validToken, new CreateAlunoController().handle)
+routes.get('/get-alunos', validToken, new GetAlunosController().handle)
 
 // Rotas Matéria
 routes.post('/create-materia', validToken, new CreateMateriaController().handle)
 routes.get('/get-materias', validToken, new GetMateriaController().handle)
 routes.post('/get-background', validToken, new GetBackgroundController().handle)
+routes.post('/adicionar-aluno-materia', validToken, new AddAlunoMateriaController().handle)
 
 // Rotas Aula
 routes.post('/create-aula', validToken, new CreateAulaController().handle)
