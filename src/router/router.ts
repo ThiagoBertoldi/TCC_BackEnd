@@ -24,6 +24,7 @@ import { GetMateriasAlunoController } from "../controller/Materia/GetMateriasAlu
 import { ValidaQuestaoController } from "../controller/Questao/ValidaQuestaoController"
 import { BuscaRespondidasController } from "../controller/Questao/BuscaRespondidasController"
 import { GetMoedasAlunoController } from "../controller/User/GetMoedasAlunoController"
+import { CompraItemController } from "../controller/Mercado/CompraItemController"
 
 const routes = Router()
 
@@ -62,5 +63,6 @@ routes.get('/questoes-respondidas', validToken, new BuscaRespondidasController()
 // Rotas Mercado
 routes.post('/att-mercado', validToken, new SaveMercadoController().handle)
 routes.get('/get-itens-mercado', validToken, new GetItensMercadoController().handle)
+routes.post('/comprar-item', validToken, new CompraItemController().handle)
 
 export { routes }

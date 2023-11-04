@@ -7,7 +7,7 @@ class GetItensMercadoController {
 
       let service = new GetItensMercadoService()
 
-      let itens = await service.execute({ idMateria: idMateria as string, idProfessor: req.user_id as string})
+      let itens = await service.execute({ idMateria: idMateria as string })
      
       return res.json(itens)
    }
