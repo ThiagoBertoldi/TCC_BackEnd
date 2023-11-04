@@ -22,6 +22,8 @@ import { GetAlunosController } from "../controller/User/GetAlunosController"
 import { AddAlunoMateriaController } from "../controller/Materia/AddAlunoMateriaController"
 import { GetMateriasAlunoController } from "../controller/Materia/GetMateriasAlunoController"
 import { ValidaQuestaoController } from "../controller/Questao/ValidaQuestaoController"
+import { BuscaRespondidasController } from "../controller/Questao/BuscaRespondidasController"
+import { GetMoedasAlunoController } from "../controller/User/GetMoedasAlunoController"
 
 const routes = Router()
 
@@ -31,6 +33,7 @@ routes.post('/register', new CreateUserController().handle)
 routes.get('/get-user', validToken, new GetUserController().handle)
 routes.post('/create-aluno', validToken, new CreateAlunoController().handle)
 routes.get('/get-alunos', validToken, new GetAlunosController().handle)
+routes.get('/get-moedas', validToken, new GetMoedasAlunoController().handle)
 
 // Rotas Matéria
 routes.post('/create-materia', validToken, new CreateMateriaController().handle)
@@ -54,6 +57,7 @@ routes.get('/get-questao', validToken, new GetQuestaoController().handle)
 routes.post('/create-questao', validToken, new NovaQuestaoController().handle)
 routes.post('/update-questao', validToken, new AttQuestaoController().handle)
 routes.post('/valida-questao', validToken, new ValidaQuestaoController().handle)
+routes.get('/questoes-respondidas', validToken, new BuscaRespondidasController().handle)
 
 // Rotas Mercado
 routes.post('/att-mercado', validToken, new SaveMercadoController().handle)

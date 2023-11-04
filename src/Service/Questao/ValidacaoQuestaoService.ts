@@ -29,7 +29,6 @@ class ValidaQuestaoService {
          throw new Error('Erro ao gravar resposta')
       } else {
          if (respostaCorreta) {
-            console.log('resposta está correta')
             await this.gravaMoedas(idAluno, idMateria, qntdMoedas)
             await this.gravaXp(idAluno)
          }
