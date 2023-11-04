@@ -21,6 +21,7 @@ import { CreateAlunoController } from "../controller/User/CreateAlunoController"
 import { GetAlunosController } from "../controller/User/GetAlunosController"
 import { AddAlunoMateriaController } from "../controller/Materia/AddAlunoMateriaController"
 import { GetMateriasAlunoController } from "../controller/Materia/GetMateriasAlunoController"
+import { ValidaQuestaoController } from "../controller/Questao/ValidaQuestaoController"
 
 const routes = Router()
 
@@ -52,6 +53,7 @@ routes.post('/delete-board', validToken, new DeleteBoardController().handle)
 routes.get('/get-questao', validToken, new GetQuestaoController().handle)
 routes.post('/create-questao', validToken, new NovaQuestaoController().handle)
 routes.post('/update-questao', validToken, new AttQuestaoController().handle)
+routes.post('/valida-questao', validToken, new ValidaQuestaoController().handle)
 
 // Rotas Mercado
 routes.post('/att-mercado', validToken, new SaveMercadoController().handle)
