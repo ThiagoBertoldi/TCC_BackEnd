@@ -1,4 +1,4 @@
-import { Router, Request, Response, json } from "express"
+import { Router } from "express"
 import { validToken } from "../middleware/isAuthenticate"
 import { CreateUserController } from "../controller/User/CreateUserController"
 import { LoginController } from "../controller/User/LoginController"
@@ -25,6 +25,10 @@ import { ValidaQuestaoController } from "../controller/Questao/ValidaQuestaoCont
 import { BuscaRespondidasController } from "../controller/Questao/BuscaRespondidasController"
 import { GetMoedasAlunoController } from "../controller/User/GetMoedasAlunoController"
 import { CompraItemController } from "../controller/Mercado/CompraItemController"
+import { GetExtratoController } from "../controller/User/GetExtratoController"
+import { GetTitulosController } from "../controller/User/GetTitulosController"
+import { DefineTituloController } from "../controller/User/DefineTituloController"
+import { GetTituloAlunoController } from "../controller/User/GetTituloAlunoController"
 
 const routes = Router()
 
@@ -35,6 +39,10 @@ routes.get('/get-user', validToken, new GetUserController().handle)
 routes.post('/create-aluno', validToken, new CreateAlunoController().handle)
 routes.get('/get-alunos', validToken, new GetAlunosController().handle)
 routes.get('/get-moedas', validToken, new GetMoedasAlunoController().handle)
+routes.get('/get-titulos', validToken, new GetTitulosController().handle)
+routes.post('/define-titulo', validToken, new DefineTituloController().handle)
+routes.get('/get-titulo', validToken, new GetTituloAlunoController().handle)
+routes.get('/get-extrato', validToken, new GetExtratoController().handle)
 
 // Rotas Matéria
 routes.post('/create-materia', validToken, new CreateMateriaController().handle)
