@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { GetExtratoService } from "../../Service/User/GetExtratoService";
+import { GetExtratoService } from "../../Service/Extrato/GetExtratoService";
 
 class GetExtratoController {
    async handle(req: Request, res: Response) {

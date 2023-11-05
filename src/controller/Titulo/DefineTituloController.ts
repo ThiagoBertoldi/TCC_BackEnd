@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { DefineTituloService } from "../../Service/User/DefineTituloService";
+import { DefineTituloService } from "../../Service/Titulo/DefineTituloService";
 
 class DefineTituloController {
    async handle(req: Request, res: Response) {

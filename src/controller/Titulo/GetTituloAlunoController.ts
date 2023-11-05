@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { GetTituloAlunoService } from "../../Service/User/GetTituloAlunoService";
+import { GetTituloAlunoService } from "../../Service/Titulo/GetTituloAlunoService";
 
 class GetTituloAlunoController {
    async handle(req: Request, res: Response) {

@@ -25,10 +25,12 @@ import { ValidaQuestaoController } from "../controller/Questao/ValidaQuestaoCont
 import { BuscaRespondidasController } from "../controller/Questao/BuscaRespondidasController"
 import { GetMoedasAlunoController } from "../controller/User/GetMoedasAlunoController"
 import { CompraItemController } from "../controller/Mercado/CompraItemController"
-import { GetExtratoController } from "../controller/User/GetExtratoController"
-import { GetTitulosController } from "../controller/User/GetTitulosController"
-import { DefineTituloController } from "../controller/User/DefineTituloController"
-import { GetTituloAlunoController } from "../controller/User/GetTituloAlunoController"
+import { GetExtratoController } from "../controller/Extrato/GetExtratoController"
+import { GetTitulosController } from "../controller/Titulo/GetTitulosController"
+import { DefineTituloController } from "../controller/Titulo/DefineTituloController"
+import { GetTituloAlunoController } from "../controller/Titulo/GetTituloAlunoController"
+import { GetNotificacoesController } from "../controller/Notificacao/GetNotificacoesController"
+import { DeleteNotificacaoController } from "../controller/Notificacao/DeleteNotificacaoController"
 
 const routes = Router()
 
@@ -39,10 +41,18 @@ routes.get('/get-user', validToken, new GetUserController().handle)
 routes.post('/create-aluno', validToken, new CreateAlunoController().handle)
 routes.get('/get-alunos', validToken, new GetAlunosController().handle)
 routes.get('/get-moedas', validToken, new GetMoedasAlunoController().handle)
+
+// Títulos Aluno
 routes.get('/get-titulos', validToken, new GetTitulosController().handle)
 routes.post('/define-titulo', validToken, new DefineTituloController().handle)
 routes.get('/get-titulo', validToken, new GetTituloAlunoController().handle)
+
+// Extratos de Compras nas Matérias
 routes.get('/get-extrato', validToken, new GetExtratoController().handle)
+
+// Notificações Professor
+routes.get('/notificacoes-professor', validToken, new GetNotificacoesController().handle)
+routes.post('/exclusao-notificacao', validToken, new DeleteNotificacaoController().handle)
 
 // Rotas Matéria
 routes.post('/create-materia', validToken, new CreateMateriaController().handle)
