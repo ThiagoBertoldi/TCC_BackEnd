@@ -8,7 +8,7 @@ class GetMateriaService {
    async execute({ idProfessor }: GetMateriaInterface) {
       const projection = { idProfessor: 0  }
       
-      return await client.db('TCC').collection('Materia').find({ idProfessor }, { projection })
+      return await client.collection('Materia').find({ idProfessor }, { projection })
    }
 }
 

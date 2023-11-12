@@ -8,7 +8,7 @@ interface GetItensMercadoInterface {
 class GetItensMercadoService {
    async execute({ idMateria }: GetItensMercadoInterface) {
       let projection = { idProfessor: 0, idMateria: 0 }
-      return await client.db('TCC').collection('Mercado').findOne({ idMateria: new ObjectId(idMateria) }, { projection })
+      return await client.collection('Mercado').findOne({ idMateria: new ObjectId(idMateria) }, { projection })
    }
 }
 

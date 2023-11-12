@@ -12,7 +12,7 @@ class GetMateriasAlunoService {
 
       let projection = { _id: 0, idAluno: 0 }
 
-      const getMateriasAluno = await client.db('TCC').collection('MateriaAlunos').find({ idAluno: new ObjectId(idAluno) }, { projection })
+      const getMateriasAluno = await client.collection('MateriaAlunos').find({ idAluno: new ObjectId(idAluno) }, { projection })
       if (!getMateriasAluno)
          throw new Error('Nenhuma matéria foi encontrada')
 
@@ -25,7 +25,7 @@ class GetMateriasAlunoService {
       let materias = []
 
       for await (var id of idsMaterias) {
-         const materia = await client.db('TCC').collection('Materia').findOne({ _id: id })
+         const materia = await client.collection('Materia').findOne({ _id: id })
          if(!materia)
             throw new Error('Não foi encontrado nenhuma matéria para esse aluno')
 

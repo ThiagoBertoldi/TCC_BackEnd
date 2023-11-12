@@ -24,7 +24,7 @@ class ValidaQuestaoService {
          qntdMoedas
       }
 
-      const gravaResposta = await client.db('TCC').collection('Respostas').insertOne(dto)
+      const gravaResposta = await client.collection('Respostas').insertOne(dto)
       if (!gravaResposta?.insertedId) {
          throw new Error('Erro ao gravar resposta')
       } else {
@@ -38,17 +38,17 @@ class ValidaQuestaoService {
    }
 
    async gravaXp(idAluno: string) {
-      const existeXp = await client.db('TCC').collection('ExperienciaAluno').findOne({ idAluno: new ObjectId(idAluno) })
+      const existeXp = await client.collection('ExperienciaAluno').findOne({ idAluno: new ObjectId(idAluno) })
       
       if(existeXp?._id) {
-         await client.db('TCC').collection('ExperienciaAluno').updateOne({ _id: existeXp._id }, { $set: { xp: 10 + existeXp?.xp ?? 0 }})
+         await client.collection('ExperienciaAluno').updateOne({ _id: existeXp._id }, { $set: { xp: 10 + existeXp?.xp ?? 0 }})
       } else {
-         await client.db('TCC').collection('ExperienciaAluno').insertOne({ idAluno: new ObjectId(idAluno), xp: 10 })
+         await client.collection('ExperienciaAluno').insertOne({ idAluno: new ObjectId(idAluno), xp: 10 })
       }
    }
 
    async gravaMoedas(idAluno: string, idMateria: string, qntdMoedas: number) {
-      const existeCarteira = await client.db('TCC').collection('CarteiraAluno').findOne({ idAluno: new ObjectId(idAluno), idMateria: new ObjectId(idMateria) })
+      const existeCarteira = await client.collection('CarteiraAluno').findOne({ idAluno: new ObjectId(idAluno), idMateria: new ObjectId(idMateria) })
 
       let gravacao = {
          idAluno: new ObjectId(idAluno),
@@ -56,10 +56,10 @@ class ValidaQuestaoService {
       }
 
       if (existeCarteira?._id) {
-         await client.db('TCC').collection('CarteiraAluno').updateOne({ _id: existeCarteira._id }, { $set: { moedas: qntdMoedas + existeCarteira?.moedas ?? 0 } })
+         await client.collection('CarteiraAluno').updateOne({ _id: existeCarteira._id }, { $set: { moedas: qntdMoedas + existeCarteira?.moedas ?? 0 } })
       } else {
          let newGravacao = Object.assign(gravacao, { moedas: qntdMoedas })
-         await client.db('TCC').collection('CarteiraAluno').insertOne(newGravacao)
+         await client.collection('CarteiraAluno').insertOne(newGravacao)
       }
    }
 }

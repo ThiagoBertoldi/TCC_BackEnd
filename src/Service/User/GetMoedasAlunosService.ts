@@ -8,7 +8,7 @@ interface GetMoedasAluno {
 
 class GetMoedasAlunoService {
    async execute({ idMateria, idAluno }: GetMoedasAluno) {
-      return await client.db('TCC').collection('CarteiraAluno').findOne({ idMateria: new ObjectId(idMateria), idAluno: new ObjectId(idAluno) })
+      return await client.collection('CarteiraAluno').findOne({ idMateria: new ObjectId(idMateria), idAluno: new ObjectId(idAluno) })
    }
 }
 

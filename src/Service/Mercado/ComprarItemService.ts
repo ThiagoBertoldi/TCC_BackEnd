@@ -15,19 +15,19 @@ class CompraItemService {
 
       let horaCompra = new Date()
 
-      const saldoCarteira = await client.db('TCC').collection('CarteiraAluno').findOne({ idAluno: new ObjectId(idAluno), idMateria: new ObjectId(idMateria) })
+      const saldoCarteira = await client.collection('CarteiraAluno').findOne({ idAluno: new ObjectId(idAluno), idMateria: new ObjectId(idMateria) })
       if(!saldoCarteira?._id || saldoCarteira?.moedas < moedasItem)
          throw new Error('Você não tem moedas suficientes para comprar esse item')
 
-      const aluno = await client.db('TCC').collection('User').findOne({ _id: new ObjectId(idAluno), type: 2 })
+      const aluno = await client.collection('User').findOne({ _id: new ObjectId(idAluno), type: 2 })
       if(!aluno?._id)
          throw new Error('Erro ao processar a compra, usuário não encontrado')
 
-      const materia = await client.db('TCC').collection('Materia').findOne({ _id: new ObjectId(idMateria) })
+      const materia = await client.collection('Materia').findOne({ _id: new ObjectId(idMateria) })
       if(!materia?._id)
          throw new Error('Erro ao processar a compra, matéria não encontrada')
 
-      const professor = await client.db('TCC').collection('User').findOne({ _id: new ObjectId(materia.idProfessor), type: 1 })
+      const professor = await client.collection('User').findOne({ _id: new ObjectId(materia.idProfessor), type: 1 })
       if(!professor?._id)   
          throw new Error('Erro ao processar a compra, professor da matéria não foi encontrado')
 
@@ -41,14 +41,14 @@ class CompraItemService {
          created_at: horaCompra
       }
 
-      const avisaProfessor = await client.db('TCC').collection('NotificaProfessor').insertOne(notificacaoProfessor)
+      const avisaProfessor = await client.collection('NotificaProfessor').insertOne(notificacaoProfessor)
       if(!avisaProfessor?.insertedId)
          throw new Error('Não foi possível notificar o professor, compra cancelada')
       else {
          let saldoRestante = saldoCarteira.moedas - moedasItem
 
          let attCarteira = { $set: { moedas: saldoRestante } }
-         await client.db('TCC').collection('CarteiraAluno').updateOne({ idAluno: new ObjectId(idAluno), idMateria: new ObjectId(idMateria) }, attCarteira)
+         await client.collection('CarteiraAluno').updateOne({ idAluno: new ObjectId(idAluno), idMateria: new ObjectId(idMateria) }, attCarteira)
 
          let extratoAluno = {
             itemComprado: descricaoItem,
@@ -61,7 +61,7 @@ class CompraItemService {
             created_at: horaCompra
          }
 
-         await client.db('TCC').collection('ExtratoAluno').insertOne(extratoAluno)
+         await client.collection('ExtratoAluno').insertOne(extratoAluno)
       }
          
       return { descricaoItem, moedasItem, compraRealizada: true };

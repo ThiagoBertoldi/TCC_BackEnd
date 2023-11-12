@@ -20,7 +20,7 @@ class AddAlunosMateriaService {
          })
       })
 
-      const insertedAluno = await client.db('TCC').collection('MateriaAlunos').insertMany(alunosToInsert)
+      const insertedAluno = await client.collection('MateriaAlunos').insertMany(alunosToInsert)
       if(!insertedAluno?.insertedIds)
          throw new Error('Não foi possível adicionar os alunos')
 

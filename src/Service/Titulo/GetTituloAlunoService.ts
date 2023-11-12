@@ -7,7 +7,7 @@ interface GetTituloAlunoInterface {
 
 class GetTituloAlunoService {
    async execute({ idAluno }: GetTituloAlunoInterface) {
-      return await client.db('TCC').collection('TituloAluno').findOne({ idAluno: new ObjectId(idAluno) })
+      return await client.collection('TituloAluno').findOne({ idAluno: new ObjectId(idAluno) })
    }
 }
 

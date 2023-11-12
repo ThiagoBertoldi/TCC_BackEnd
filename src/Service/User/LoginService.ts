@@ -21,7 +21,7 @@ class LoginService {
       if(!pass || pass.length < 8)
          throw new Error('Email ou senha inválido')
 
-      const user = await client.db('TCC').collection('User').findOne({ email })
+      const user = await client.collection('User').findOne({ email })
       if(!user) 
          throw new Error('Usuário não encontrado')
 

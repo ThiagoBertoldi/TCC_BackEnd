@@ -19,14 +19,14 @@ class CreateAlunoService {
       if(username.length < 4)
          throw new Error('O nome de usuário deve ter pelo menos 4 caracteres')
 
-      const existsUser = await client.db('TCC').collection('User').findOne({ email })
+      const existsUser = await client.collection('User').findOne({ email })
       if(existsUser)
          throw new Error('Esse email já está cadastrado')
 
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync('@login1234', salt); 
 
-      const user = await client.db('TCC').collection('User').insertOne({ email, pass: hash, username, idProfessorCadastro: new ObjectId(idProfessor), type: 2, created_at: new Date() })
+      const user = await client.collection('User').insertOne({ email, pass: hash, username, idProfessorCadastro: new ObjectId(idProfessor), type: 2, created_at: new Date() })
       if(!user?.insertedId)
          throw new Error('Não foi possível cadastrar o usuário')
       

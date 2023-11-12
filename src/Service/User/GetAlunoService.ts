@@ -4,7 +4,7 @@ class GetAlunosService {
    async execute() {
       let projection = { pass: 0 }
 
-      const alunos = await client.db('TCC').collection('User').find({ type: 2 }, { projection })
+      const alunos = await client.collection('User').find({ type: 2 }, { projection })
       if(!alunos)
          throw new Error('Nenhum aluno encontrado')
 

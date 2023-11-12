@@ -12,7 +12,7 @@ class GetUserService {
 
       let projection = { pass: 0, _id: 0 }
 
-      const user = await client.db('TCC').collection('User').findOne({ _id: new ObjectId(user_id) }, { projection })
+      const user = await client.collection('User').findOne({ _id: new ObjectId(user_id) }, { projection })
       if(!user)
          throw new Error('Usuário não encontrado')
 

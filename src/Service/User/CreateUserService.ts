@@ -26,14 +26,14 @@ class CreateUserService {
       if(pass != confirmPass)
          throw new Error('Senhas não são iguais')
 
-      const existsUser = await client.db('TCC').collection('User').findOne({ email })
+      const existsUser = await client.collection('User').findOne({ email })
       if(existsUser)
          throw new Error('Esse email já está cadastrado')
 
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(pass, salt); 
 
-      const user = await client.db('TCC').collection('User').insertOne({ email, pass: hash, username, type, created_at: new Date() })
+      const user = await client.collection('User').insertOne({ email, pass: hash, username, type, created_at: new Date() })
       if(!user?.insertedId)
          throw new Error('Não foi possível cadastrar o usuário')
       

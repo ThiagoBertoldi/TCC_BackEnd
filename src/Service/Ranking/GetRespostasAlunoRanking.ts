@@ -11,10 +11,10 @@ class GetRespostasAlunoRankingService {
     if (!idAluno || !idMateria)
       throw new Error('Não foi possível buscar as respostas')
 
-    const aluno = await client.db('TCC').collection('User').findOne({ _id: new ObjectId(idAluno) })
-    const titulo = await client.db('TCC').collection('TituloAluno').findOne({ idAluno: new ObjectId(aluno._id) })
+    const aluno = await client.collection('User').findOne({ _id: new ObjectId(idAluno) })
+    const titulo = await client.collection('TituloAluno').findOne({ idAluno: new ObjectId(aluno._id) })
 
-    const respondidas = await client.db('TCC').collection('Respostas').find({ idMateria: new ObjectId(idMateria), idAluno: new ObjectId(idAluno) })
+    const respondidas = await client.collection('Respostas').find({ idMateria: new ObjectId(idMateria), idAluno: new ObjectId(idAluno) })
     let respostas = await respondidas.toArray()
 
     let listaRespostas = {
@@ -29,7 +29,7 @@ class GetRespostasAlunoRankingService {
     }
 
     for await (var resposta of respostas) {
-      let questao = await client.db('TCC').collection('Questao').findOne({ _id: new ObjectId(resposta.idQuestao) })
+      let questao = await client.collection('Questao').findOne({ _id: new ObjectId(resposta.idQuestao) })
       if(!questao?._id) continue
 
       listaRespostas.total++

@@ -10,7 +10,7 @@ class GetBackgroundService {
       if (!idMateria)
          throw new Error('Erro ao buscar mapa da matéria')
 
-      const background = await client.db('TCC').collection('BackgroundMateria').findOne({ idMateria: new ObjectId(idMateria) })
+      const background = await client.collection('BackgroundMateria').findOne({ idMateria: new ObjectId(idMateria) })
       if (!background)
          throw new Error('Erro ao buscar mapa da matéria 2')
 

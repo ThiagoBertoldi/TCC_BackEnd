@@ -10,7 +10,7 @@ class GetQuestaoService {
       if (!idAula)
          throw new Error('Erro ao buscar questão')
 
-      const questao = await client.db('TCC').collection('Questao').findOne({ idAula: new ObjectId(idAula) })
+      const questao = await client.collection('Questao').findOne({ idAula: new ObjectId(idAula) })
       if (!questao)
          throw new Error('Erro ao buscar questão')
 

@@ -10,9 +10,9 @@ class DeleteBoardService {
       if (!idBoard)
          throw new Error('Não foi possível deletar o board')
 
-      await client.db('TCC').collection('Board').deleteOne({ _id: new ObjectId(idBoard) })
-      await client.db('TCC').collection('BoardComponent').deleteMany({ idBoard })
-      await client.db('TCC').collection('Aula').deleteMany({ idBoard: new ObjectId(idBoard) })
+      await client.collection('Board').deleteOne({ _id: new ObjectId(idBoard) })
+      await client.collection('BoardComponent').deleteMany({ idBoard })
+      await client.collection('Aula').deleteMany({ idBoard: new ObjectId(idBoard) })
 
       return { idBoard };
    }

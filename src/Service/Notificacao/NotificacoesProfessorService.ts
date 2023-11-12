@@ -7,7 +7,7 @@ interface GetNotificacoesInterface {
 
 class GetNotificacoesService {
    async execute({ idProfessor }: GetNotificacoesInterface) {
-      let notificacoes = await client.db('TCC').collection('NotificaProfessor').find({ idProfessorResponsavel: new ObjectId(idProfessor) })
+      let notificacoes = await client.collection('NotificaProfessor').find({ idProfessorResponsavel: new ObjectId(idProfessor) })
 
       let response = await notificacoes.toArray()
 

@@ -9,12 +9,12 @@ class GetExtratoService {
    async execute({ idAluno }: GetExtratoInterface) {
       
       let objetosFinais = []
-      const extratos = await client.db('TCC').collection('ExtratoAluno').find({ idAluno: new ObjectId(idAluno) })
+      const extratos = await client.collection('ExtratoAluno').find({ idAluno: new ObjectId(idAluno) })
 
       let response = await extratos.toArray()
 
       for await (const item of response) {
-         const materia = await client.db('TCC').collection('Materia').findOne({ _id: new ObjectId(item.idMateria) })
+         const materia = await client.collection('Materia').findOne({ _id: new ObjectId(item.idMateria) })
 
          objetosFinais.push({
             created_at: item.created_at,

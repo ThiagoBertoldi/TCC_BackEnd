@@ -11,7 +11,7 @@ class BuscaRespondidasService {
       if (!idMateria)
          throw new Error('Erro ao buscar respondidas')
 
-      const questoes = await client.db('TCC').collection('Respostas').find({ idMateria: new ObjectId(idMateria), idAluno: new ObjectId(idAluno) })
+      const questoes = await client.collection('Respostas').find({ idMateria: new ObjectId(idMateria), idAluno: new ObjectId(idAluno) })
 
       let response = await questoes.toArray()
 

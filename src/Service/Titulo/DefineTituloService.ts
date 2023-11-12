@@ -11,14 +11,14 @@ class DefineTituloService {
       if(!idAluno || !titulo)
          throw new Error('Não foi possível definir o título')
 
-      const existeTitulo = await client.db('TCC').collection('TituloAluno').findOne({ idAluno: new ObjectId(idAluno) })
+      const existeTitulo = await client.collection('TituloAluno').findOne({ idAluno: new ObjectId(idAluno) })
 
       if(existeTitulo?._id) {
-         const updateTitulo = await client.db('TCC').collection('TituloAluno').updateOne({ idAluno: new ObjectId(idAluno) }, { $set: { titulo } })
+         const updateTitulo = await client.collection('TituloAluno').updateOne({ idAluno: new ObjectId(idAluno) }, { $set: { titulo } })
          if(!updateTitulo)
             throw new Error('Não foi possível atualizar o título')
       } else {
-         const setNovoTitulo = await client.db('TCC').collection('TituloAluno').insertOne({ idAluno: new ObjectId(idAluno), titulo })
+         const setNovoTitulo = await client.collection('TituloAluno').insertOne({ idAluno: new ObjectId(idAluno), titulo })
          if(!setNovoTitulo?.insertedId)
             throw new Error('Não foi possível definir o título')
       }

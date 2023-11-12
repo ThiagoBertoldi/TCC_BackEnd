@@ -7,7 +7,7 @@ interface DeleteNotificacaoInterface {
 
 class DeleteNotificacaoService {
    async execute({ idNotificacao }: DeleteNotificacaoInterface) {
-      let deleted = await client.db('TCC').collection('NotificaProfessor').deleteOne({ _id: new ObjectId(idNotificacao) })
+      let deleted = await client.collection('NotificaProfessor').deleteOne({ _id: new ObjectId(idNotificacao) })
       if(!deleted)
          throw new Error('Não foi possível deletar esse registro')
 

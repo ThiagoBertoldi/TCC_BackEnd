@@ -10,7 +10,7 @@ class GetComponentsBoardService {
       if (!idBoard)
          throw new Error('Não foi possível carregar o board')
 
-      let components = await client.db('TCC').collection('BoardComponent').find({ idBoard })
+      let components = await client.collection('BoardComponent').find({ idBoard })
 
       let response = await components.toArray()
 

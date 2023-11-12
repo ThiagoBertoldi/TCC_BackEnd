@@ -34,7 +34,7 @@ class AttQuestaoService {
          }
       }
       
-      const questao = await client.db('TCC').collection('Questao').updateOne({ idAula: new ObjectId(idAula) }, insert)
+      const questao = await client.collection('Questao').updateOne({ idAula: new ObjectId(idAula) }, insert)
       if (!questao)
          throw new Error('Não foi possível alterar a matéria')
 

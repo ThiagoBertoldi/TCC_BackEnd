@@ -2,7 +2,7 @@ import { client } from "../../database/client"
 
 class GetTitulosService {
    async execute() {
-      return await client.db('TCC').collection('Titulos').find({});
+      return await client.collection('Titulos').find({});
    }
 }
 

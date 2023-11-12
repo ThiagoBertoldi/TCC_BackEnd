@@ -22,11 +22,11 @@ class CreateAulaService {
       let idAula = new ObjectId()
       let idBoard = new ObjectId()
 
-      const board = await client.db('TCC').collection('Board').insertOne({ _id: idBoard, idAula, created_at: new Date(), idProfessor })
+      const board = await client.collection('Board').insertOne({ _id: idBoard, idAula, created_at: new Date(), idProfessor })
       if (!board?.insertedId)
          throw new Error('Não foi possível criar o board de aula')
 
-      const aula = await client.db('TCC').collection('Aula').insertOne({ _id: idAula, idBoard, nomeAula, conteudoAula, idMateria, dataAula, posicaoX, posicaoY, tipoAula: 1, created_at: new Date(), idProfessor })
+      const aula = await client.collection('Aula').insertOne({ _id: idAula, idBoard, nomeAula, conteudoAula, idMateria, dataAula, posicaoX, posicaoY, tipoAula: 1, created_at: new Date(), idProfessor })
       if (!aula?.insertedId)
          throw new Error('Não foi possível criar a matéria')
 

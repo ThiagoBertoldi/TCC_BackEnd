@@ -9,7 +9,7 @@ interface SaveMercadoRequest {
 
 interface ItensMercado {
    descricao: string,
-   moedas: string | number 
+   moedas: string | number;
 }
 
 class SaveMercadoService {
@@ -19,15 +19,15 @@ class SaveMercadoService {
 
       let dto = { itensMercado, idMateria: new ObjectId(idMateria), idProfessor: new ObjectId(idProfessor) }
 
-      const mercado = await client.db('TCC').collection('Mercado').findOne({ idMateria: new ObjectId(idMateria) })
+      const mercado = await client.collection('Mercado').findOne({ idMateria: new ObjectId(idMateria) })
       if (!mercado?._id) {
-         let inserted = await client.db('TCC').collection('Mercado').insertOne(dto)
+         let inserted = await client.collection('Mercado').insertOne(dto)
          if(!inserted?.insertedId)
             throw new Error('Não foi possível inserir novo item ao mercado')
       } else {
          let newDto = { $set: dto }
 
-         let updated = await client.db('TCC').collection('Mercado').updateOne({ idMateria: new ObjectId(idMateria) }, newDto)
+         let updated = await client.collection('Mercado').updateOne({ idMateria: new ObjectId(idMateria) }, newDto)
          if(!updated)
             throw new Error('Não foi possível atualizar o item do mercado')
       }

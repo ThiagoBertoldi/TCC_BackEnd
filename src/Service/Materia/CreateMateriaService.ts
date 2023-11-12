@@ -11,7 +11,7 @@ class CreateMateriaService {
       if(!nomeMateria || !turma)
          throw new Error('Nome da matéria e turma são obrigatórios')
 
-      const materia = await client.db('TCC').collection('Materia').insertOne({ nomeMateria, turma, idProfessor, created_at: new Date() })
+      const materia = await client.collection('Materia').insertOne({ nomeMateria, turma, idProfessor, created_at: new Date() })
       if(!materia?.insertedId)
          throw new Error('Não foi possível criar a matéria')
 

@@ -33,7 +33,7 @@ class NovaQuestaoService {
          created_at: new Date()
       }
 
-      let aula = await client.db('TCC').collection('Aula').insertOne(insertAula)
+      let aula = await client.collection('Aula').insertOne(insertAula)
       if(!aula?.insertedId)
          throw new Error('Erro ao criar aula')
 
@@ -47,7 +47,7 @@ class NovaQuestaoService {
          created_at: new Date() 
       }
 
-      const questao = await client.db('TCC').collection('Questao').insertOne(insert)
+      const questao = await client.collection('Questao').insertOne(insert)
       if(!questao?.insertedId)
          throw new Error('Não foi possível criar a matéria')
 

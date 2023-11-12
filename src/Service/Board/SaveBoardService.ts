@@ -11,7 +11,7 @@ class SaveBoardService {
       if (!idProfessor || !idBoard)
          throw new Error('Não foi possível salvar o board - X00001')
 
-      const board = await client.db('TCC').collection('BoardComponent')
+      const board = await client.collection('BoardComponent')
 
       await board.deleteMany({ idProfessor, idBoard })
 

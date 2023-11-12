@@ -10,14 +10,14 @@ class GetRankingMateriaService {
     if (!idMateria)
       throw new Error('Não foi possível buscar o ranking')
 
-    const respostas = await client.db('TCC').collection('Respostas').find({ idMateria: new ObjectId(idMateria) })
+    const respostas = await client.collection('Respostas').find({ idMateria: new ObjectId(idMateria) })
     let response = await respostas.toArray()
 
     let ranking = [] 
 
     for await (var item of response) {
-      let aluno = await client.db('TCC').collection('User').findOne({ _id: new ObjectId(item.idAluno) })
-      let titulo = await client.db('TCC').collection('TituloAluno').findOne({ idAluno: new ObjectId(aluno._id) })
+      let aluno = await client.collection('User').findOne({ _id: new ObjectId(item.idAluno) })
+      let titulo = await client.collection('TituloAluno').findOne({ idAluno: new ObjectId(aluno._id) })
       
       if(!ranking[aluno.email])
         ranking[aluno.email] = { contador: 0, nome: aluno.username, _id: aluno._id, titulo: titulo?.titulo ?? null }
