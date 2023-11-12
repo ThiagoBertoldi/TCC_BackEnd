@@ -17,16 +17,17 @@ class GetRankingMateriaService {
 
     for await (var item of response) {
       let aluno = await client.db('TCC').collection('User').findOne({ _id: new ObjectId(item.idAluno) })
+      let titulo = await client.db('TCC').collection('TituloAluno').findOne({ idAluno: new ObjectId(aluno._id) })
       
       if(!ranking[aluno.email])
-        ranking[aluno.email] = { contador: 0, nome: aluno.username, _id: aluno._id }
+        ranking[aluno.email] = { contador: 0, nome: aluno.username, _id: aluno._id, titulo: titulo?.titulo ?? null }
 
       if(item.respostaCorreta)
         ranking[aluno.email].contador++
     }
     
     const resultArray = Object.entries(ranking)
-      .map(([email, { contador, nome, _id }]) => ({ email, contador, nome, _id }))
+      .map(([email, { contador, nome, _id, titulo }]) => ({ email, contador, nome, _id, titulo }))
       .sort((a, b) => b.contador - a.contador);
 
     return resultArray;
