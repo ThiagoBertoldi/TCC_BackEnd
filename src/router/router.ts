@@ -31,6 +31,8 @@ import { DefineTituloController } from "../controller/Titulo/DefineTituloControl
 import { GetTituloAlunoController } from "../controller/Titulo/GetTituloAlunoController"
 import { GetNotificacoesController } from "../controller/Notificacao/GetNotificacoesController"
 import { DeleteNotificacaoController } from "../controller/Notificacao/DeleteNotificacaoController"
+import { GetRankingMateriaController } from "../controller/Ranking/GetRankingMateriaController"
+import { GetRespostasAlunoRankingController } from "../controller/Ranking/GetRespostasAlunoRanking"
 
 const routes = Router()
 
@@ -82,5 +84,9 @@ routes.get('/questoes-respondidas', validToken, new BuscaRespondidasController()
 routes.post('/att-mercado', validToken, new SaveMercadoController().handle)
 routes.get('/get-itens-mercado', validToken, new GetItensMercadoController().handle)
 routes.post('/comprar-item', validToken, new CompraItemController().handle)
+
+//Rotas Ranking
+routes.get('/get-ranking', validToken, new GetRankingMateriaController().handle)
+routes.get('/respostas-aluno-materia', validToken, new GetRespostasAlunoRankingController().handle)
 
 export { routes }
