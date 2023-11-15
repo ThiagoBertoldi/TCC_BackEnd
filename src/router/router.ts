@@ -34,6 +34,8 @@ import { DeleteNotificacaoController } from "../controller/Notificacao/DeleteNot
 import { GetRankingMateriaController } from "../controller/Ranking/GetRankingMateriaController"
 import { GetRespostasAlunoRankingController } from "../controller/Ranking/GetRespostasAlunoRanking"
 import { GetXPAlunoController } from "../controller/Experiencia/GetXPAlunoController"
+import { GetAlunosMateriaController } from "../controller/Materia/GetAlunosMateriaController"
+import { GetInfosAmigoController } from "../controller/User/GetInfosAmigoController"
 
 const routes = Router()
 
@@ -44,6 +46,7 @@ routes.get('/get-user', validToken, new GetUserController().handle)
 routes.post('/create-aluno', validToken, new CreateAlunoController().handle)
 routes.get('/get-alunos', validToken, new GetAlunosController().handle)
 routes.get('/get-moedas', validToken, new GetMoedasAlunoController().handle)
+routes.get('/get-infos-amigo', validToken, new GetInfosAmigoController().handle)
 
 // Títulos Aluno
 routes.get('/get-titulos', validToken, new GetTitulosController().handle)
@@ -63,6 +66,7 @@ routes.get('/get-materias', validToken, new GetMateriaController().handle)
 routes.post('/get-background', validToken, new GetBackgroundController().handle)
 routes.post('/adicionar-aluno-materia', validToken, new AddAlunoMateriaController().handle)
 routes.get('/get-materias-aluno', validToken, new GetMateriasAlunoController().handle)
+routes.get('/get-alunos-materia', validToken, new GetAlunosMateriaController().handle)
 
 // Rotas Aula
 routes.post('/create-aula', validToken, new CreateAulaController().handle)
