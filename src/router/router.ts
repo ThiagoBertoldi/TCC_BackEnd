@@ -33,6 +33,7 @@ import { GetNotificacoesController } from "../controller/Notificacao/GetNotifica
 import { DeleteNotificacaoController } from "../controller/Notificacao/DeleteNotificacaoController"
 import { GetRankingMateriaController } from "../controller/Ranking/GetRankingMateriaController"
 import { GetRespostasAlunoRankingController } from "../controller/Ranking/GetRespostasAlunoRanking"
+import { GetXPAlunoController } from "../controller/Experiencia/GetXPAlunoController"
 
 const routes = Router()
 
@@ -88,5 +89,8 @@ routes.post('/comprar-item', validToken, new CompraItemController().handle)
 //Rotas Ranking
 routes.get('/get-ranking', validToken, new GetRankingMateriaController().handle)
 routes.get('/respostas-aluno-materia', validToken, new GetRespostasAlunoRankingController().handle)
+
+// Experiencia
+routes.get('/get-xp', validToken, new GetXPAlunoController().handle)
 
 export { routes }
