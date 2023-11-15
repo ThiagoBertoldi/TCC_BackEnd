@@ -37,6 +37,7 @@ import { GetXPAlunoController } from "../controller/Experiencia/GetXPAlunoContro
 import { GetAlunosMateriaController } from "../controller/Materia/GetAlunosMateriaController"
 import { GetInfosAmigoController } from "../controller/User/GetInfosAmigoController"
 import { GetRankingGlobalMoedasController } from "../controller/Ranking/GetRankingGlobalMoedasController"
+import { GetRankingGlobalXPController } from "../controller/Ranking/GetRankingGlobalXPController"
 
 const routes = Router()
 
@@ -95,6 +96,7 @@ routes.post('/comprar-item', validToken, new CompraItemController().handle)
 routes.get('/get-ranking', validToken, new GetRankingMateriaController().handle)
 routes.get('/respostas-aluno-materia', validToken, new GetRespostasAlunoRankingController().handle)
 routes.get('/get-ranking-global-moedas', validToken, new GetRankingGlobalMoedasController().handle)
+routes.get('/get-ranking-global-xp', validToken, new GetRankingGlobalXPController().handle)
 
 // Experiencia
 routes.get('/get-xp', validToken, new GetXPAlunoController().handle)
